@@ -15,8 +15,8 @@ def lambda_handler(event, context):
     email_password = json.loads(secret.get_secret_value(SecretId='*SECRET ID*')['SecretString'])['password']
 
     #Obtiene saldo y dias desde Parameter Store y le da formato ($) al saldo
-    dias = ssm.get_parameter(Name='*PARAMETER*')['Parameter']['Value']
-    saldo = ssm.get_parameter(Name='*PARAMETER*')['Parameter']['Value']
+    dias = ssm.get_parameter(Name='dias')['Parameter']['Value']
+    saldo = ssm.get_parameter(Name='saldo')['Parameter']['Value']
     currency = "${:,.2f} MXN".format(float(saldo))
     
     #Función para mandar mensaje por correo
